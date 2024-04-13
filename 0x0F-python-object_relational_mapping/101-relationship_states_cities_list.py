@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-The script Lists all State objects and corresponding City objects contained in the DB
+To list all State objects and corresponding City objects contained in the DB
 """
 import sys
 from relationship_state import Base, State
@@ -20,3 +20,7 @@ if __name__ == '__main__':
 
     st = session.query(State).outerjoin(City).order_by(State.id, City.id).all()
 
+    for state in st:
+        print("{}: {}".format(state.id, state.name))
+        for city in state.cities:
+            print("    {}: {}".format(city.id, city.name))
