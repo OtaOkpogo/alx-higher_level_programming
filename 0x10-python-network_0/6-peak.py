@@ -1,31 +1,30 @@
 #!/usr/bin/python3
-""" It finds a peak in a list of unsorted integers
-"""
+""" The technical interview preparation"""
 
 
 def find_peak(list_of_integers):
-    """
-    Args:
-        list_of_integers(int): list of integers to find peak of
-    Returns: peak of list_of_integers or None
-    """
-    size = len(list_of_integers)
-    mid_e = size
-    mid = size // 2
+    """Finds a peak (i.e. the highest value) of an
+    unsorted list of integers"""
 
-    if size == 0:
+    if list_of_integers == [] or list_of_integers is None:
         return None
+    # if len(list_of_integers) == 2:
+        # return max(list_of_integers)
+    # if len(list_of_integers) == 3:
+        # if list_of_integers[1] == max(list_of_integers):
+        #   return list_of_integers[1]
+        # return None
 
-    while True:
-        mid_e = mid_e // 2
-        if (mid < size - 1 and
-                list_of_integers[mid] < list_of_integers[mid + 1]):
-            if mid_e // 2 == 0:
-                mid_e = 2
-            mid = mid + mid_e // 2
-        elif mid_e > 0 and list_of_integers[mid] < list_of_integers[mid - 1]:
-            if mid_e // 2 == 0:
-                mid_e = 2
-            mid = mid - mid_e // 2
-        else:
-            return list_of_integers[mid]
+    # mid = len(list_of_integers) // 2
+    # left = find_peak(list_of_integers[:mid])
+    # right = find_peak(list_of_integers[mid:])
+    # if left is None:
+        # return right
+    # if right is None:
+        # return left
+    # if left > right:
+        # return left
+    # return right
+
+    list_of_integers.sort()
+    return list_of_integers[-1]
