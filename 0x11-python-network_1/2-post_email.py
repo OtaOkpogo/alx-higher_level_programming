@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 """
-It sends a POST request to the passed URL with the email as a parameter,
-and displays the body of the response (decoded in utf-8)
+This is a Python script that takes in a URL and an email, sends a POST
+request to the passed URL with the email as a parameter, and
+displays the body of the response
 """
+from urllib import request, parse
+import sys
 
-if __name__ == '__main__':
-    import urllib.request
-    import urllib.parse
-    import sys
 
-    argv = sys.argv
-    url = argv[1]
-    email = argv[2]
-    DATA = urllib.parse.urlencode({"email": email})
-    DATA = DATA.encode('ascii')
-
-    with urllib.request.urlopen(url, DATA) as response:
-        print(response.read().decode('utf-8'))
+if __name__ == "__main__":
+    values = {'email': sys.argv[2]}
+    data = parse.urlencode(values)
+    data = data.encode('ascii')
+    req = request.Request(sys.argv[1], data)
+    with request.urlopen(req) as response:
+        body = response.read()
+        print(body.decode('utf-8'))
